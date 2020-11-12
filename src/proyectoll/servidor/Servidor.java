@@ -58,7 +58,9 @@ public class Servidor extends Observable implements Runnable {
                     if (tabla.equals("articulo")) {
                         System.out.println("entro2");
                         nombre = info[3];
+                        categoria = info[7];
                         System.out.println(nombre);
+                        System.out.println(categoria);
 
                     } else if (tabla == "categoria") {
 
