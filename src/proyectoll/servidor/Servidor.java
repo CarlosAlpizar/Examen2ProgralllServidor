@@ -51,12 +51,13 @@ public class Servidor extends Observable implements Runnable {
                 System.out.println(consulta);
 
                 if (consulta.equals("insert")) {
-                    System.out.println("entro");
                     String into = info[1];
                     String tabla = info[2];
+                    System.out.println("entro");
 
-                    if (tabla == "articulo") {
-                        nombre = info[4];
+                    if (tabla.equals("articulo")) {
+                        System.out.println("entro2");
+                        nombre = info[3];
                         System.out.println(nombre);
 
                     } else if (tabla == "categoria") {
