@@ -11,17 +11,15 @@ import java.net.Socket;
 import java.util.Observable;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Carlos Alpizar <carlosalpizarg@hotmail.com>
- */
+
 public class Servidor extends Observable implements Runnable {
 
     private int puerto;
-    private String consulta;
+    private String consulta, into, tabla;
     private String nombre, descripcion, precio, impuesto, categoria, estado, inventario;
     private String idArti;
     private String idCante;
+    
 
     public Servidor(int puerto) {
         this.puerto = puerto;
@@ -29,7 +27,7 @@ public class Servidor extends Observable implements Runnable {
 
     @Override
     public void run() {
-
+        Consultas consultas = new Consultas();
         ServerSocket servidor = null;
         Socket sc = null;
         DataInputStream input;
@@ -51,18 +49,24 @@ public class Servidor extends Observable implements Runnable {
                 System.out.println(consulta);
 
                 if (consulta.equals("insert")) {
-                    String into = info[1];
-                    String tabla = info[2];
+                     into = info[1];
+                     tabla = info[2];
                     System.out.println("entro");
 
                     if (tabla.equals("articulo")) {
                         System.out.println("entro2");
                         nombre = info[3];
+                        descripcion = info[4];
+                        precio = info[5];
+                        impuesto = info[6];
                         categoria = info[7];
-                        System.out.println(nombre);
-                        System.out.println(categoria);
+                        estado = info[8];
+                        inventario = info[9];
+                        
+                        consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
 
-                    } else if (tabla == "categoria") {
+
+                    } else if (tabla.equals("categoria")) {
 
                     } else {
                         JOptionPane.showInputDialog(null, "La tabla digitada no existe");

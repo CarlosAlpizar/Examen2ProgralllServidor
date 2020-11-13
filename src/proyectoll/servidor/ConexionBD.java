@@ -21,7 +21,7 @@ public class ConexionBD {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventos?useTimezone=true&serverTimezone=UTC", "root", "root");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/examen2?useTimezone=true&serverTimezone=UTC", "root", "1234");
             return con;
 
         } catch (Exception ex) {
@@ -34,12 +34,12 @@ public class ConexionBD {
     public void ejecutar(String s) {
 
         Connection conection = getConnection();
-        String consulta = "{call SP_In_articulo(?,?)}";
+        String consulta = "{call SP_In_articulo(?,?,?,?,?,?,?)}";
         try {
 
             CallableStatement cs = conection.prepareCall(consulta);
             cs.setString(1, "1");
-            cs.setString(2, "21/04/2021 1:00");
+            cs.setString(2, "");
 
             cs.executeUpdate();
 
