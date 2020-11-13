@@ -64,8 +64,8 @@ public class Servidor extends Observable implements Runnable {
                         RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
-                        idCante = info[7];
-                        //consultas.
+                        categoria = info[3];
+                        consultas.InsertCategoria(categoria);
 
                     } else {
                         JOptionPane.showInputDialog(null, "La tabla digitada no existe");
