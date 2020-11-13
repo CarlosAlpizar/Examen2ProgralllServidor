@@ -41,6 +41,7 @@ public class Consultas {
         try{
             CallableStatement cs2 = con.prepareCall("{call SP_In_categoria(?)}");
             cs2.setString(1,nombrecat);
+            cs2.executeUpdate();
         } catch(Exception ex){
             System.out.println(ex.fillInStackTrace());
         }

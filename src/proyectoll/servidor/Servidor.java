@@ -49,7 +49,7 @@ public class Servidor extends Observable implements Runnable {
                 if (consulta.equals("insert")) {
                     into = info[1];
                     tabla = info[2];
-
+                    
                     if (tabla.equals("articulo")) {
 
                         nombre = info[3];
@@ -64,7 +64,9 @@ public class Servidor extends Observable implements Runnable {
                         RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
+                        System.out.println("entro a categoria");
                         categoria = info[3];
+                        System.out.println(categoria);
                         consultas.InsertCategoria(categoria);
 
                     } else {
