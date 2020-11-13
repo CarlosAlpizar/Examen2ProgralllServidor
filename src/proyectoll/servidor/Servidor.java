@@ -11,7 +11,6 @@ import java.net.Socket;
 import java.util.Observable;
 import javax.swing.JOptionPane;
 
-
 public class Servidor extends Observable implements Runnable {
 
     private int puerto;
@@ -19,7 +18,6 @@ public class Servidor extends Observable implements Runnable {
     private String nombre, descripcion, precio, impuesto, categoria, estado, inventario;
     private String idArti;
     private String idCante;
-    
 
     public Servidor(int puerto) {
         this.puerto = puerto;
@@ -49,8 +47,8 @@ public class Servidor extends Observable implements Runnable {
                 System.out.println(consulta);
 
                 if (consulta.equals("insert")) {
-                     into = info[1];
-                     tabla = info[2];
+                    into = info[1];
+                    tabla = info[2];
                     System.out.println("entro");
 
                     if (tabla.equals("articulo")) {
@@ -62,9 +60,9 @@ public class Servidor extends Observable implements Runnable {
                         categoria = info[7];
                         estado = info[8];
                         inventario = info[9];
-                        
-                        consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
 
+                        //consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
+                        RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
 
