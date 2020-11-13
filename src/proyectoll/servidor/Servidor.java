@@ -39,12 +39,12 @@ public class Servidor extends Observable implements Runnable {
                 input = new DataInputStream(sc.getInputStream());
 
                 String mensaje = input.readUTF();
-                System.out.println(mensaje);
+               
 
                 String[] info = mensaje.split("_");
 
                 consulta = info[0];
-                System.out.println(consulta);
+                
 
                 if (consulta.equals("insert")) {
                     into = info[1];
@@ -64,10 +64,11 @@ public class Servidor extends Observable implements Runnable {
                         RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
-                        System.out.println("entro a categoria");
+                 
                         categoria = info[3];
                         System.out.println(categoria);
                         consultas.InsertCategoria(categoria);
+                        consultas.ObtenerCategoria();
 
                     } else {
                         JOptionPane.showInputDialog(null, "La tabla digitada no existe");

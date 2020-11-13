@@ -5,8 +5,11 @@
  */
 package proyectoll.servidor;
 
+import com.mysql.cj.protocol.Resultset;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -15,6 +18,7 @@ import java.sql.Connection;
 public class Consultas {
         ConexionBD conexion = new ConexionBD();
         Connection con = conexion.getConnection();
+        String mensaje;
 
     public void insertar(String nombre, String descripcion, String precio, String impuesto, String categoria, String estado, String inventario) {
         
@@ -46,8 +50,25 @@ public class Consultas {
             System.out.println(ex.fillInStackTrace());
         }
         
-        
+       
     }
+    
+     public void ObtenerCategoria(){
+          String select = "select * from categoria";  
+          Statement st;
+          String[] dato = new String[2];
+          try{
+              st = con.createStatement();
+              ResultSet rs = st.executeQuery(select);
+              while (rs.next()){
+                  mensaje += rs.getString(1)+ "_" + rs.getString(2)+ ";";
+              }
+              System.out.println(mensaje);
+              RemitenteServidor.enviar("localhost", 9001, mensaje);
+          }catch(Exception ex){
+              System.out.println(ex.fillInStackTrace());
+          }
+        }
 
     public Consultas() {
     }
