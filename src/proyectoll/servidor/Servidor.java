@@ -49,10 +49,9 @@ public class Servidor extends Observable implements Runnable {
                 if (consulta.equals("insert")) {
                     into = info[1];
                     tabla = info[2];
-                    System.out.println("entro");
 
                     if (tabla.equals("articulo")) {
-                        System.out.println("entro2");
+
                         nombre = info[3];
                         descripcion = info[4];
                         precio = info[5];
@@ -61,10 +60,12 @@ public class Servidor extends Observable implements Runnable {
                         estado = info[8];
                         inventario = info[9];
 
-                        //consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
+                        consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
                         RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
+                        idCante = info[7];
+                        //consultas.
 
                     } else {
                         JOptionPane.showInputDialog(null, "La tabla digitada no existe");
