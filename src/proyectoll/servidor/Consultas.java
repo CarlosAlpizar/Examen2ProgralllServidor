@@ -13,10 +13,11 @@ import java.sql.Connection;
  * @author User
  */
 public class Consultas {
-
-    public void insertar(String nombre, String descripcion, String precio, String impuesto, String categoria, String estado, String inventario) {
         ConexionBD conexion = new ConexionBD();
         Connection con = conexion.getConnection();
+
+    public void insertar(String nombre, String descripcion, String precio, String impuesto, String categoria, String estado, String inventario) {
+        
 
         try {
             CallableStatement cs = con.prepareCall("{call SP_In_articulo(?,?,?,?,?,?,?)}");
@@ -34,6 +35,17 @@ public class Consultas {
             System.out.println(ex.fillInStackTrace());
         }
 
+    }
+    
+    public void InsertCategoria(String nombrecat){
+        try{
+            CallableStatement cs2 = con.prepareCall("{call SP_In_categoria(?)}");
+            cs2.setString(1,nombrecat);
+        } catch(Exception ex){
+            System.out.println(ex.fillInStackTrace());
+        }
+        
+        
     }
 
     public Consultas() {
