@@ -18,7 +18,7 @@ import java.sql.Statement;
 public class Consultas {
         ConexionBD conexion = new ConexionBD();
         Connection con = conexion.getConnection();
-        String mensaje;
+        String mensaje = "";
 
     public void insertar(String nombre, String descripcion, String precio, String impuesto, String categoria, String estado, String inventario) {
         
@@ -65,6 +65,7 @@ public class Consultas {
               }
               System.out.println(mensaje);
               RemitenteServidor.enviar("localhost", 9001, mensaje);
+              mensaje = "";
           }catch(Exception ex){
               System.out.println(ex.fillInStackTrace());
           }

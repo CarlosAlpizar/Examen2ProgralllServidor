@@ -66,7 +66,7 @@ public class Servidor extends Observable implements Runnable {
                     } else if (tabla.equals("categoria")) {
                  
                         categoria = info[3];
-                        System.out.println(categoria);
+                        //System.out.println(categoria);
                         consultas.InsertCategoria(categoria);
                         consultas.ObtenerCategoria();
 
