@@ -53,7 +53,7 @@ public class Consultas {
         }
 
     }
-    public void ObtenerArt(){
+    public void ObtenerArt(int puerto){
         String select = "select * from articulo";
         Statement st;
       //  String[] dato = new String[2];
@@ -66,14 +66,14 @@ public class Consultas {
                 
             }
             System.out.println(mensaje);
-            RemitenteServidor.enviar("localhost", 9001, mensaje);
+            RemitenteServidor.enviar("localhost", puerto, mensaje);
             mensaje ="";
         }catch(Exception ex){
             System.out.println(ex.fillInStackTrace());
         }
     }
     
-    
+    ////////////////////// categorias
     
     public void InsertCategoria(String nombrecat){
         try{
@@ -90,7 +90,7 @@ public class Consultas {
        
     }
     
-     public void ObtenerCategoria(){
+     public void ObtenerCategoria(int puerto){
           String select = "select * from categoria";  
           Statement st;
 
@@ -103,7 +103,7 @@ public class Consultas {
                   mensaje +=  rs.getString(1)+ "_" + rs.getString(2) + ";";
               }
               System.out.println(mensaje);
-              RemitenteServidor.enviar("localhost", 9001, mensaje);
+              RemitenteServidor.enviar("localhost", puerto, mensaje);
               mensaje = "";
           }catch(Exception ex){
               System.out.println(ex.fillInStackTrace());

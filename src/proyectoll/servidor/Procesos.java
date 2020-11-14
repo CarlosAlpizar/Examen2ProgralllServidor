@@ -6,6 +6,20 @@ import javax.swing.JOptionPane;
 
 public class Procesos implements Runnable {
 
+    /**
+     * @return the puerto
+     */
+    public int getPuerto() {
+        return puerto;
+    }
+
+    /**
+     * @param puerto the puerto to set
+     */
+    public void setPuerto(int puerto) {
+        this.puerto = puerto;
+    }
+
     String mensaje = "";
     private int puerto;
     private String consulta, into, tabla;
@@ -23,25 +37,34 @@ public class Procesos implements Runnable {
 
         Consultas consultas = new Consultas();
         String[] info = mensaje.split("_");
-        System.out.println(mensaje);
         System.out.println(info[0]);
-        System.out.println(info[1]);
 
-        /*if(//insert){
+        // puerto - accion - tabla - info
+        
+        
+        if (info[1].equals("insert")) {
 
-            if([2]==categoria){
-
-            }else if ([2]==articulo){
+            if (info[2].equals("categoria")) {
+                categoria = info[3];
+                
+                consultas.InsertCategoria(categoria);
+                consultas.ObtenerCategoria(puerto);
+                
+            } 
+            else if (info[2].equals("articulo")) {
+                System.out.println("as");
             }
 
-        }else if(//update ){
 
+        }
+        else if (info[0].equals("refresh")){
+            consultas.ObtenerCategoria(Integer.parseInt(info[1]));
+            consultas.ObtenerArt(Integer.parseInt(info[1]));
+        } 
+    }
+}
 
-        }else if(//delete){
-
-
-        }*/
- /*
+/*
         consulta = info[0];
 
         if (consulta.equals("insert")) {
@@ -81,7 +104,4 @@ public class Procesos implements Runnable {
         } else {
 
         }
-         */
-    }
-
-}
+ */
