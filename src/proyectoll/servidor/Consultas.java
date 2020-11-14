@@ -40,6 +40,26 @@ public class Consultas {
         }
 
     }
+    public void ObtenerArt(){
+        String select = "select * from articulo";
+        Statement st;
+      //  String[] dato = new String[2];
+        try{
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(select);
+            while (rs.next()){
+                mensaje += rs.getString(1)+ "_" + rs.getString(2)+ "_" + rs.getString(3)+ "_" + rs.getString(4)+ "_" + rs.getString(5)+ "_" + rs.getString(6)+ "_" + rs.getString(7)+ "_" + rs.getString(8)+ "_";
+                
+            }
+            System.out.println(mensaje);
+            RemitenteServidor.enviar("localhost", 9001, mensaje);
+            mensaje ="";
+        }catch(Exception ex){
+            System.out.println(ex.fillInStackTrace());
+        }
+    }
+    
+    
     
     public void InsertCategoria(String nombrecat){
         try{
@@ -50,13 +70,14 @@ public class Consultas {
             System.out.println(ex.fillInStackTrace());
         }
         
+        
        
     }
     
      public void ObtenerCategoria(){
           String select = "select * from categoria";  
           Statement st;
-          String[] dato = new String[2];
+          //String[] dato = new String[2];
           try{
               st = con.createStatement();
               ResultSet rs = st.executeQuery(select);

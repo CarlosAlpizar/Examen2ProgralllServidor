@@ -61,7 +61,8 @@ public class Servidor extends Observable implements Runnable {
                         inventario = info[9];
 
                         consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
-                        RemitenteServidor.enviar("localhost", 9001, "todo correcto");
+                        consultas.ObtenerArt();
+                      //  RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
                  
