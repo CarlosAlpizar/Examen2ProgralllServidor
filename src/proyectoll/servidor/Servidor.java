@@ -51,7 +51,7 @@ public class Servidor extends Observable implements Runnable {
                     tabla = info[2];
                     
                     if (tabla.equals("articulo")) {
-
+                        System.out.println("entro articulo");
                         nombre = info[3];
                         descripcion = info[4];
                         precio = info[5];
@@ -62,7 +62,6 @@ public class Servidor extends Observable implements Runnable {
 
                         consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
                         consultas.ObtenerArt();
-                      //  RemitenteServidor.enviar("localhost", 9001, "todo correcto");
 
                     } else if (tabla.equals("categoria")) {
                  
@@ -70,12 +69,16 @@ public class Servidor extends Observable implements Runnable {
                         //System.out.println(categoria);
                         consultas.InsertCategoria(categoria);
                         consultas.ObtenerCategoria();
+                   // consultas.ObtenerArt();
 
                     } else {
                         JOptionPane.showInputDialog(null, "La tabla digitada no existe");
                     }
 
-                } else if (consulta == "update") {
+                } else if (consulta.equals("select")) {
+                    System.out.println("entro a select");
+                    consultas.ObtenerCategoria();
+                   // consultas.ObtenerArt();
 
                 } else {
 
