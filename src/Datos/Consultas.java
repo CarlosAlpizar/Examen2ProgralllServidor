@@ -48,24 +48,23 @@ public class Consultas {
 
     }
 
-    public void ObtenerArt(int puerto) {
+    public String ObtenerArt() {
         String select = "select * from articulo";
         Statement st;
+        String retorno = "";
         //  String[] dato = new String[2];
         try {
             st = con.createStatement();
             ResultSet rs = st.executeQuery(select);
             while (rs.next()) {
-                mensaje += rs.getString(1) + "_" + rs.getString(2) + "_" + rs.getString(3) + "_" + rs.getString(4) + "_" + rs.getString(5) + "_"
+                retorno += rs.getString(1) + "_" + rs.getString(2) + "_" + rs.getString(3) + "_" + rs.getString(4) + "_" + rs.getString(5) + "_"
                         + rs.getString(6) + "_" + rs.getString(7) + "_" + rs.getString(8) + ";";
 
             }
-            System.out.println(mensaje);
-            RemitenteServidor.enviar("localhost", puerto, mensaje);
-            mensaje = "";
         } catch (Exception ex) {
             System.out.println(ex.fillInStackTrace());
         }
+        return retorno;
     }
     
 
@@ -84,27 +83,40 @@ public class Consultas {
 
     }
 
-    public void ObtenerCategoria(int puerto) {
+    public String ObtenerCategoria() {
         String select = "select * from categoria";
         Statement st;
-
+        String retorno = "";
         //String[] dato = new String[2];
         try {
             st = con.createStatement();
             ResultSet rs = st.executeQuery(select);
-            mensaje += "C%";
+            
             while (rs.next()) {
-                mensaje += rs.getString(1) + "_" + rs.getString(2) + ";";
+                retorno += rs.getString(1) + "_" + rs.getString(2) + ";";
             }
-            System.out.println(mensaje);
-            RemitenteServidor.enviar("localhost", puerto, mensaje);
-            mensaje = "";
         } catch (Exception ex) {
             System.out.println(ex.fillInStackTrace());
         }
+        return retorno;
+    }
+    
+        public void ModificarArt(String idart, String nombre, String desc, String precio, String impuesto, String idcateg, String estado, String inv ){
+        String query = "Update articulo set nombre =" +  "'" + nombre + "'" + ", descripcion =" + "'" + desc + "'" + ", precio =" + "'" + precio + "'" + ", impuestos = " + "'" + impuesto + "'" + ", idcategoria = " + "1" + ", estado =" + "'" + estado + "'" + ", inventario = " + "'" + inv + "'" + " where idarticulo =" + idart + ";";
+       // RemitenteServidor.enviar("localhost", 9000, query);
+       Statement st;
+       try{
+         st = con.createStatement();
+       ResultSet rs = st.executeQuery(query); 
+       } catch(Exception ex){
+           System.out.println(ex.fillInStackTrace());
+       }
+       
+       
     }
 
     public Consultas() {
+        
     }
 
 }

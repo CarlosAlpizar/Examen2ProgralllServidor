@@ -26,7 +26,7 @@ public class Procesos implements Runnable {
 
     @Override
     public void run() {
-
+        
         Consultas consultas = new Consultas();
         String[] info = mensaje.split("_");
         System.out.println("mensaje articulo: " + mensaje);
@@ -38,38 +38,37 @@ public class Procesos implements Runnable {
                 categoria = info[3];
 
                 consultas.InsertCategoria(categoria);
-                consultas.ObtenerCategoria(puerto);
+                
 
             } else if (info[2].equals("articulo")) {
-               /* nombre = info[3];
+                nombre = info[3];
                 descripcion = info[4];
                 precio = info[5];
                 impuesto = info[6];
                 categoria = info[7];
                 estado = info[8];
-                inventario = info[9];*/
-               // consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
-              //  consultas.ObtenerArt(puerto);
+                inventario = info[9];
+                consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
+                
             }
 
         } else if (info[0].equals("refresh")) {
-            System.out.println("entro al refresh");
-            consultas.ObtenerCategoria(Integer.parseInt(info[1]));
-            consultas.ObtenerArt(Integer.parseInt(info[1]));
-        }
-        // puerto - update - tabla - info
-        else if (info[1].equals("update")){
-           // if(info[2].equals("articulo")){
-            //    consultas.ModificarArt(idArti, nombre, descripcion, precio, impuesto, idCante, estado, inventario);
-                
-            }
-            else {
+            String msj = consultas.ObtenerArt() + "/" + consultas.ObtenerCategoria();
+            System.out.println("mensaje de procesos: " + msj);
+            RemitenteServidor.enviar("localhost", Integer.parseInt(info[1]), msj );
+            
+        } // puerto - update - tabla - info
+        else if (info[1].equals("update")) {
+            if (info[2].equals("articulo")) {
+                consultas.ModificarArt(idArti, nombre, descripcion, precio, impuesto, idCante, estado, inventario);
+
+            } else {
                 // categoria 
             }
-            
-            
+
         }
     }
+}
 
 
 /*

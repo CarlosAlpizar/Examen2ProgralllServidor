@@ -34,7 +34,7 @@ public class Servidor extends Observable implements Runnable {
                 input = new DataInputStream(sc.getInputStream());
 
                 this.mensaje = input.readUTF();
-                System.out.println(mensaje);
+                System.out.println("mensaje entrante " + mensaje);
                 Thread hilo = new Thread(new Procesos(mensaje));
                 hilo.start();
 
