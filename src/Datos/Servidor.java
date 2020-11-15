@@ -1,17 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package proyectoll.servidor;
+package Datos;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.io.DataInputStream;
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Observable;
-import javax.swing.JOptionPane;
+import Cliente.Procesos;
 
 public class Servidor extends Observable implements Runnable {
 

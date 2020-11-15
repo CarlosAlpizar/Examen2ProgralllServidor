@@ -1,21 +1,13 @@
-package proyectoll.servidor;
+package Cliente;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import Datos.Consultas;
 
 public class Procesos implements Runnable {
 
-    /**
-     * @return the puerto
-     */
     public int getPuerto() {
         return puerto;
     }
 
-    /**
-     * @param puerto the puerto to set
-     */
     public void setPuerto(int puerto) {
         this.puerto = puerto;
     }
@@ -40,27 +32,22 @@ public class Procesos implements Runnable {
         System.out.println(info[0]);
 
         // puerto - accion - tabla - info
-        
-        
         if (info[1].equals("insert")) {
 
             if (info[2].equals("categoria")) {
                 categoria = info[3];
-                
+
                 consultas.InsertCategoria(categoria);
                 consultas.ObtenerCategoria(puerto);
-                
-            } 
-            else if (info[2].equals("articulo")) {
+
+            } else if (info[2].equals("articulo")) {
                 System.out.println("as");
             }
 
-
-        }
-        else if (info[0].equals("refresh")){
+        } else if (info[0].equals("refresh")) {
             consultas.ObtenerCategoria(Integer.parseInt(info[1]));
             consultas.ObtenerArt(Integer.parseInt(info[1]));
-        } 
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-package proyectoll.servidor;
+package Cliente;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
