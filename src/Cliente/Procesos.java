@@ -71,6 +71,18 @@ public class Procesos implements Runnable {
             }
 
         }
+        else if (info[1].equals("delete")){
+            System.out.println("entro delete");
+            if(info[2].equals("articulo") ){
+                System.out.println("entro articulo");
+               idArti = info [3];
+            consultas.EliminarArt(idArti);
+            } 
+            else{
+                // eliminar categoria
+            }
+            
+        }
     }
 }
 

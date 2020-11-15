@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import Cliente.RemitenteServidor;
+import java.sql.PreparedStatement;
 
 public class Consultas {
 
@@ -66,8 +67,18 @@ public class Consultas {
         }
         return retorno;
     }
-    
 
+    public void EliminarArt(String eliminado) {
+
+        try {
+            String deletear = "delete from articulo where idarticulo=" + eliminado;
+            PreparedStatement st = con.prepareStatement(deletear);
+            st.executeUpdate();
+
+        } catch (Exception ex) {
+            System.out.println(ex.fillInStackTrace());
+        }
+    }
 
     ////////////////////// categorias
     public void InsertCategoria(String nombrecat) {
@@ -91,7 +102,7 @@ public class Consultas {
         try {
             st = con.createStatement();
             ResultSet rs = st.executeQuery(select);
-            
+
             while (rs.next()) {
                 retorno += rs.getString(1) + "_" + rs.getString(2) + ";";
             }
@@ -100,13 +111,12 @@ public class Consultas {
         }
         return retorno;
     }
-    
-        public void ModificarArt(int idart, String nombre, String desc, String precio, String impuesto, String categ, String estado, String inv ){
-            
-            
-            System.out.println("metodo modificar");
-            System.out.println(nombre + desc);
-                    String select = "select idcategoria from categoria where nombre = '" + categ + "'";
+
+    public void ModificarArt(int idart, String nombre, String desc, String precio, String impuesto, String categ, String estado, String inv) {
+
+        System.out.println("metodo modificar");
+        System.out.println(nombre + desc);
+        String select = "select idcategoria from categoria where nombre = '" + categ + "'";
         Statement st;
         String idcategoria = null;
         try {
@@ -120,28 +130,36 @@ public class Consultas {
         } catch (Exception ex) {
             System.out.println(ex.fillInStackTrace());
         }
-            
-                
-            
+
         String query = "update articulo set nombre='" + nombre + "', descripcion='" + desc + "', precio='" + precio + "', impuestos='" + impuesto + "', idcategoria='" + idcategoria + "', estado='" + estado + "', inventario='" + inv + "' where idarticulo=" + idart;
-       // RemitenteServidor.enviar("localhost", 9000, query);
-       Statement ss;
-       try{
-           System.out.println("entro");
-         ss = con.createStatement();
-         ss.executeUpdate(query);
-       //ResultSet rs = ss.executeQuery(query); 
-       } catch(Exception ex){
-           System.out.println("segundo");
-           System.out.println(ex.fillInStackTrace());
-       }
-       
-       
+        // RemitenteServidor.enviar("localhost", 9000, query);
+        Statement ss;
+        try {
+            System.out.println("entro");
+            ss = con.createStatement();
+            ss.executeUpdate(query);
+            //ResultSet rs = ss.executeQuery(query); 
+        } catch (Exception ex) {
+            System.out.println("segundo");
+            System.out.println(ex.fillInStackTrace());
+        }
+
     }
-        
+
+    public void EliminarCat(String eliminado) {
+
+        try {
+            String deletear = "delete from articulo where idarticulo=" + eliminado; ///////// cambiar 
+            PreparedStatement st = con.prepareStatement(deletear);
+            st.executeUpdate();
+
+        } catch (Exception ex) {
+            System.out.println(ex.fillInStackTrace());
+        }
+    }
 
     public Consultas() {
-        
+
     }
 
 }
