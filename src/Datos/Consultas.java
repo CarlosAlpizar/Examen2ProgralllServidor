@@ -101,19 +101,44 @@ public class Consultas {
         return retorno;
     }
     
-        public void ModificarArt(String idart, String nombre, String desc, String precio, String impuesto, String idcateg, String estado, String inv ){
-        String query = "Update articulo set nombre =" +  "'" + nombre + "'" + ", descripcion =" + "'" + desc + "'" + ", precio =" + "'" + precio + "'" + ", impuestos = " + "'" + impuesto + "'" + ", idcategoria = " + "1" + ", estado =" + "'" + estado + "'" + ", inventario = " + "'" + inv + "'" + " where idarticulo =" + idart + ";";
+        public void ModificarArt(int idart, String nombre, String desc, String precio, String impuesto, String categ, String estado, String inv ){
+            
+            
+            System.out.println("metodo modificar");
+            System.out.println(nombre + desc);
+                    String select = "select idcategoria from categoria where nombre = '" + categ + "'";
+        Statement st;
+        String idcategoria = null;
+        try {
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(select);
+            while (rs.next()) {
+                idcategoria = rs.getString(1);
+
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.fillInStackTrace());
+        }
+            
+                
+            
+        String query = "update articulo set nombre='" + nombre + "', descripcion='" + desc + "', precio='" + precio + "', impuestos='" + impuesto + "', idcategoria='" + idcategoria + "', estado='" + estado + "', inventario='" + inv + "' where idarticulo=" + idart;
        // RemitenteServidor.enviar("localhost", 9000, query);
-       Statement st;
+       Statement ss;
        try{
-         st = con.createStatement();
-       ResultSet rs = st.executeQuery(query); 
+           System.out.println("entro");
+         ss = con.createStatement();
+         ss.executeUpdate(query);
+       //ResultSet rs = ss.executeQuery(query); 
        } catch(Exception ex){
+           System.out.println("segundo");
            System.out.println(ex.fillInStackTrace());
        }
        
        
     }
+        
 
     public Consultas() {
         

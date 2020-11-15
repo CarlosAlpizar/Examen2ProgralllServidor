@@ -14,7 +14,7 @@ public class Procesos implements Runnable {
 
     String mensaje = "";
     private int puerto;
-    private String consulta, into, tabla;
+  //  private String consulta, into, tabla;
     private String nombre, descripcion, precio, impuesto, categoria, estado, inventario;
     private String idArti;
     private String idCante;
@@ -26,10 +26,9 @@ public class Procesos implements Runnable {
 
     @Override
     public void run() {
-        
+
         Consultas consultas = new Consultas();
         String[] info = mensaje.split("_");
-        System.out.println("mensaje articulo: " + mensaje);
 
         // puerto - accion - tabla - info
         if (info[1].equals("insert")) {
@@ -38,7 +37,6 @@ public class Procesos implements Runnable {
                 categoria = info[3];
 
                 consultas.InsertCategoria(categoria);
-                
 
             } else if (info[2].equals("articulo")) {
                 nombre = info[3];
@@ -49,21 +47,27 @@ public class Procesos implements Runnable {
                 estado = info[8];
                 inventario = info[9];
                 consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
-                
+
             }
 
         } else if (info[0].equals("refresh")) {
             String msj = consultas.ObtenerArt() + "/" + consultas.ObtenerCategoria();
-            System.out.println("mensaje de procesos: " + msj);
-            RemitenteServidor.enviar("localhost", Integer.parseInt(info[1]), msj );
-            
+
+            RemitenteServidor.enviar("localhost", Integer.parseInt(info[1]), msj);
+
         } // puerto - update - tabla - info
         else if (info[1].equals("update")) {
             if (info[2].equals("articulo")) {
-                consultas.ModificarArt(idArti, nombre, descripcion, precio, impuesto, idCante, estado, inventario);
+                int idArtis = Integer.parseInt(info[3]);
+                nombre = info[4];
+                descripcion = info[5];
+                precio = info[6];
+                impuesto = info[7];
+                categoria = info[8];
+                estado = info[9];
+                inventario = info[10];
+                consultas.ModificarArt(idArtis, nombre, descripcion, precio, impuesto, categoria, estado, inventario);
 
-            } else {
-                // categoria 
             }
 
         }
