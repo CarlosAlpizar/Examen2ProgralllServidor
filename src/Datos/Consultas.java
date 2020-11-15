@@ -67,6 +67,8 @@ public class Consultas {
             System.out.println(ex.fillInStackTrace());
         }
     }
+    
+
 
     ////////////////////// categorias
     public void InsertCategoria(String nombrecat) {

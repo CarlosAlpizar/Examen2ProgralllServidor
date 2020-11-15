@@ -29,7 +29,7 @@ public class Procesos implements Runnable {
 
         Consultas consultas = new Consultas();
         String[] info = mensaje.split("_");
-        System.out.println(info[0]);
+        System.out.println("mensaje articulo: " + mensaje);
 
         // puerto - accion - tabla - info
         if (info[1].equals("insert")) {
@@ -41,15 +41,36 @@ public class Procesos implements Runnable {
                 consultas.ObtenerCategoria(puerto);
 
             } else if (info[2].equals("articulo")) {
-                System.out.println("as");
+               /* nombre = info[3];
+                descripcion = info[4];
+                precio = info[5];
+                impuesto = info[6];
+                categoria = info[7];
+                estado = info[8];
+                inventario = info[9];*/
+               // consultas.insertar(nombre, descripcion, precio, impuesto, categoria, estado, inventario);
+              //  consultas.ObtenerArt(puerto);
             }
 
         } else if (info[0].equals("refresh")) {
+            System.out.println("entro al refresh");
             consultas.ObtenerCategoria(Integer.parseInt(info[1]));
             consultas.ObtenerArt(Integer.parseInt(info[1]));
         }
+        // puerto - update - tabla - info
+        else if (info[1].equals("update")){
+           // if(info[2].equals("articulo")){
+            //    consultas.ModificarArt(idArti, nombre, descripcion, precio, impuesto, idCante, estado, inventario);
+                
+            }
+            else {
+                // categoria 
+            }
+            
+            
+        }
     }
-}
+
 
 /*
         consulta = info[0];
