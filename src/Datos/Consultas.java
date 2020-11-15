@@ -146,16 +146,38 @@ public class Consultas {
 
     }
 
-    public void EliminarCat(String eliminado) {
+    public void EliminarCat(String escogido) {
 
         try {
-            String deletear = "delete from articulo where idarticulo=" + eliminado; ///////// cambiar 
-            PreparedStatement st = con.prepareStatement(deletear);
-            st.executeUpdate();
+            String deletear = "select inventario from articulo where idcategoria ='" + escogido + "'"; ///////// cambiar 
+            Statement st;
+            String inventario = "";
+            String nulo = "";
+            st = con.createStatement();
+            ResultSet rs = st.executeQuery(deletear);
+            System.out.println("llego al metodo");
+            while (rs.next()) {
+                inventario = rs.getString(1);
+                System.out.println("traigo este mensaje: " + inventario);
+
+            }
+
+            if (!inventario.equals("")) {
+                System.out.println("no puedo borrar");
+
+            } else {
+                System.out.println("elimine: ");
+                String eliminar = "delete from categoria where idcategoria='" + escogido + "'";
+                Statement ss;
+                ss = con.createStatement();
+                ss.executeUpdate(eliminar);
+                System.out.println("se puede borrar");
+            }
 
         } catch (Exception ex) {
             System.out.println(ex.fillInStackTrace());
         }
+
     }
 
     public Consultas() {

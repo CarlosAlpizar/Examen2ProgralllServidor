@@ -14,7 +14,7 @@ public class Procesos implements Runnable {
 
     String mensaje = "";
     private int puerto;
-  //  private String consulta, into, tabla;
+    //  private String consulta, into, tabla;
     private String nombre, descripcion, precio, impuesto, categoria, estado, inventario;
     private String idArti;
     private String idCante;
@@ -70,18 +70,17 @@ public class Procesos implements Runnable {
 
             }
 
-        }
-        else if (info[1].equals("delete")){
+        } else if (info[1].equals("delete")) {
             System.out.println("entro delete");
-            if(info[2].equals("articulo") ){
-                System.out.println("entro articulo");
-               idArti = info [3];
-            consultas.EliminarArt(idArti);
-            } 
-            else{
-                // eliminar categoria
+            if (info[2].equals("articulo")) {
+
+                idArti = info[3];
+                consultas.EliminarArt(idArti);
+            } else if (info[2].equals("categoria")) {
+                consultas.EliminarCat(info[3]);
+
             }
-            
+
         }
     }
 }

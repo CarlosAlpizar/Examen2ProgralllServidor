@@ -1,5 +1,6 @@
 package proyectoll.servidor;
 
+import Datos.Consultas;
 import Datos.Servidor;
 
 /**
@@ -13,7 +14,7 @@ public class main {
         Servidor server = new Servidor(9000);
         Thread hilo = new Thread(server);
         hilo.start();
-
+        
     }
 
 }
